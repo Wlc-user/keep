@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线学习系统 - API测试</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .card h2 {
+            margin-top: 0;
+            color: #3498db;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .result {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            margin-top: 10px;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .error {
+            color: #e74c3c;
+        }
+        .success {
+            color: #2ecc71;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>在线学习系统 - API测试</h1>
+        
+        <div class="card">
+            <h2>健康检查</h2>
+            <button id="healthCheck">检查API状态</button>
+            <div id="healthResult" class="result"></div>
+        </div>
+        
+        <div class="card">
+            <h2>用户登录</h2>
+            <div>
+                <label for="username">用户名:</label>
+                <input type="text" id="username" value="admin">
+            </div>
+            <div>
+                <label for="password">密码:</label>
+                <input type="password" id="password" value="admin">
+            </div>
+            <button id="login">登录</button>
+            <div id="loginResult" class="result"></div>
+        </div>
+        
+        <div class="card">
+            <h2>获取课程列表</h2>
+            <button id="getCourses">获取课程</button>
+            <div id="coursesResult" class="result"></div>
+        </div>
+        
+        <div class="card">
+            <h2>获取学习统计</h2>
+            <button id="getStatistics">获取统计</button>
+            <div id="statisticsResult" class="result"></div>
+        </div>
+    </div>
+
+    <script>
+        // API基础URL
+        const API_BASE_URL = 'http://localhost:5142/api';
+        let authToken = '';
+        
+        // 健康检查
+        document.getElementById('healthCheck').addEventListener('click', async () => {
+            const resultElement = document.getElementById('healthResult');
+            try {
+                const response = await fetch(`${API_BASE_URL}/health`);
+                const data = await response.json();
+                resultElement.innerHTML = `<span class="success">API状态: ${data.Status}</span><br>时间戳: ${data.Timestamp}`;
+            } catch (error) {
+                resultElement.innerHTML = `<span class="error">错误: ${error.message}</span>`;
+                console.error('健康检查错误:', error);
+            }
+        });
+        
+        // 用户登录
+        document.getElementById('login').addEventListener('click', async () => {
+            const resultElement = document.getElementById('loginResult');
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/User/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP错误: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                authToken = data.token;
+                
+                resultElement.innerHTML = `<span class="success">登录成功!</span><br>Token: ${authToken.substring(0, 20)}...`;
+                
+                // 启用其他按钮
+                document.getElementById('getCourses').disabled = false;
+                document.getElementById('getStatistics').disabled = false;
+            } catch (error) {
+                resultElement.innerHTML = `<span class="error">登录失败: ${error.message}</span>`;
+                console.error('登录错误:', error);
+            }
+        });
+        
+        // 获取课程列表
+        document.getElementById('getCourses').addEventListener('click', async () => {
+            const resultElement = document.getElementById('coursesResult');
+            
+            if (!authToken) {
+                resultElement.innerHTML = '<span class="error">请先登录</span>';
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/Course`, {
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP错误: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.items && data.items.length > 0) {
+                    let coursesHtml = `<span class="success">找到 ${data.totalCount} 个课程</span><br><br>`;
+                    
+                    data.items.forEach(course => {
+                        coursesHtml += `
+                            <strong>${course.title}</strong><br>
+                            教师: ${course.teacherName}<br>
+                            难度: ${course.difficultyName}<br>
+                            评分: ${course.rating}<br>
+                            <hr>
+                        `;
+                    });
+                    
+                    resultElement.innerHTML = coursesHtml;
+                } else {
+                    resultElement.innerHTML = '没有找到课程';
+                }
+            } catch (error) {
+                resultElement.innerHTML = `<span class="error">获取课程失败: ${error.message}</span>`;
+                console.error('获取课程错误:', error);
+            }
+        });
+        
+        // 获取学习统计
+        document.getElementById('getStatistics').addEventListener('click', async () => {
+            const resultElement = document.getElementById('statisticsResult');
+            
+            if (!authToken) {
+                resultElement.innerHTML = '<span class="error">请先登录</span>';
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/LearningProgress/statistics`, {
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP错误: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                resultElement.innerHTML = `
+                    <span class="success">获取统计成功!</span><br><br>
+                    总学习时长: ${data.totalLearningTime} 分钟<br>
+                    今日学习时长: ${data.todayLearningTime} 分钟<br>
+                    本周学习时长: ${data.weekLearningTime} 分钟<br>
+                    本月学习时长: ${data.monthLearningTime} 分钟<br>
+                    已完成课程: ${data.completedCourseCount} 个<br>
+                    进行中课程: ${data.inProgressCourseCount} 个<br>
+                    已完成内容: ${data.completedContentCount} 个<br>
+                    连续学习天数: ${data.continuousDays} 天<br>
+                `;
+            } catch (error) {
+                resultElement.innerHTML = `<span class="error">获取统计失败: ${error.message}</span>`;
+                console.error('获取统计错误:', error);
+            }
+        });
+        
+        // 初始禁用需要登录的按钮
+        document.getElementById('getCourses').disabled = true;
+        document.getElementById('getStatistics').disabled = true;
+    </script>
+</body>
+</html> 

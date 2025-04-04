@@ -1,0 +1,132 @@
+.notification-page {
+  padding: 24px;
+}
+
+.notification-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.notification-page-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.notification-filters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.notification-page-content {
+  min-height: 600px;
+}
+
+.notification-list-container {
+  margin-top: 16px;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.notification-split-view {
+  display: flex;
+  gap: 24px;
+  height: 100%;
+}
+
+.notification-list-view {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 600px;
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+}
+
+.notification-detail-view {
+  flex: 1;
+  position: sticky;
+  top: 0;
+}
+
+.notification-detail-meta {
+  margin-bottom: 16px;
+}
+
+.notification-detail-content {
+  white-space: pre-line;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  font-size: 16px;
+}
+
+.notification-detail-actions {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.notification-load-more {
+  padding: 12px;
+  text-align: center;
+  background-color: #fafafa;
+  border-top: 1px solid #f0f0f0;
+}
+
+/* 暗色主题适配 */
+[data-theme="dark"] .notification-list-view {
+  border-color: #303030;
+}
+
+[data-theme="dark"] .notification-load-more {
+  background-color: #1f1f1f;
+  border-top-color: #303030;
+}
+
+/* 响应式布局 */
+@media (max-width: 992px) {
+  .notification-split-view {
+    flex-direction: column;
+  }
+  
+  .notification-list-view,
+  .notification-detail-view {
+    flex: none;
+    width: 100%;
+  }
+  
+  .notification-list-view {
+    max-height: 400px;
+  }
+}
+
+@media (max-width: 576px) {
+  .notification-page {
+    padding: 16px;
+  }
+  
+  .notification-page-header,
+  .notification-page-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .notification-page-header > *,
+  .notification-page-toolbar > * {
+    margin-bottom: 16px;
+    width: 100%;
+  }
+  
+  .notification-filters {
+    width: 100%;
+    justify-content: space-between;
+  }
+} 

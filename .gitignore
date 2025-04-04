@@ -1,0 +1,88 @@
+# Visual Studio / .NET specific
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.dll
+*.exe
+*.pdb
+*.cache
+bin/
+obj/
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+msbuild.log
+msbuild.err
+msbuild.wrn
+
+# VS Code
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# JetBrains IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Node.js / Frontend
+node_modules/
+dist/
+build/
+out/
+coverage/
+.next/
+.nuxt/
+.gatsby/
+.cache/
+.parcel-cache/
+.temp/
+.vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Local env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# System Files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Build and output
+*.tgz
+*.zip
+*.tar.gz
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Misc
+*.log
+*.bak
+*.swp
+*.tmp 

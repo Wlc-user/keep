@@ -1,0 +1,14 @@
+### 测试debug-login接口
+POST http://localhost:5189/api/auth/debug-login
+Content-Type: application/json
+
+{
+  "Username": "admin",
+  "Password": "Admin123!"
+}
+
+### 测试健康检查端点
+GET http://localhost:5189/health
+
+### 测试API健康检查端点
+GET http://localhost:5189/api/health 

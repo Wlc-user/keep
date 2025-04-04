@@ -1,0 +1,32 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": [
+    {
+      "id": 1,
+      "courseId": 1,
+      "title": "Web开发入门课程评估",
+      "description": "请对Web开发入门课程进行评价",
+      "startDate": "2025-06-25",
+      "endDate": "2025-06-30",
+      "isActive": true,
+      "questionCount": 10,
+      "responseCount": 12,
+      "createdAt": "2025-06-20",
+      "createdBy": "admin1"
+    },
+    {
+      "id": 2,
+      "courseId": 2,
+      "title": "数据结构课程评估",
+      "description": "请对数据结构课程的教学质量进行评价",
+      "startDate": "2025-07-01",
+      "endDate": "2025-07-05",
+      "isActive": true,
+      "questionCount": 8,
+      "responseCount": 15,
+      "createdAt": "2025-06-25",
+      "createdBy": "admin1"
+    }
+  ]
+} 

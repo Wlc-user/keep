@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "title": "系统维护通知",
+    "content": "系统将于本周六22:00-24:00进行例行维护，请提前做好准备。",
+    "type": "system",
+    "isRead": false,
+    "createdAt": "2023-03-28T08:00:00Z",
+    "sender": "系统管理员"
+  },
+  {
+    "id": 2,
+    "title": "课程调整通知",
+    "content": "《数据结构》课程将从下周起调整为每周三下午14:00-16:00。",
+    "type": "course",
+    "isRead": true,
+    "createdAt": "2023-03-27T10:30:00Z",
+    "sender": "教务处"
+  },
+  {
+    "id": 3,
+    "title": "作业提交提醒",
+    "content": "《机器学习》课程作业将于本周五18:00截止提交，请按时完成。",
+    "type": "homework",
+    "isRead": false,
+    "createdAt": "2023-03-26T09:15:00Z",
+    "sender": "张老师"
+  },
+  {
+    "id": 4,
+    "title": "考试安排通知",
+    "content": "期中考试将于4月15日开始，请查看具体考试安排。",
+    "type": "exam",
+    "isRead": false,
+    "createdAt": "2023-03-25T16:45:00Z",
+    "sender": "教务处"
+  },
+  {
+    "id": 5,
+    "title": "学习资料更新",
+    "content": "《网络安全》课程学习资料已更新，请登录查看。",
+    "type": "material",
+    "isRead": true,
+    "createdAt": "2023-03-24T14:20:00Z",
+    "sender": "王老师"
+  },
+  {
+    "id": 6,
+    "title": "学习进度提醒",
+    "content": "您的《数据库原理》课程学习进度落后于班级平均水平，请加油！",
+    "type": "progress",
+    "isRead": false,
+    "createdAt": "2023-03-23T11:10:00Z",
+    "sender": "学习助手"
+  },
+  {
+    "id": 7,
+    "title": "实验室开放通知",
+    "content": "计算机实验室将于下周一至周五每天13:00-21:00开放。",
+    "type": "facility",
+    "isRead": true,
+    "createdAt": "2023-03-22T08:50:00Z",
+    "sender": "实验室管理员"
+  }
+] 

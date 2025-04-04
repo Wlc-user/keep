@@ -1,0 +1,54 @@
+[
+  {
+    "id": 1,
+    "title": "数据结构与算法",
+    "code": "CS201",
+    "description": "介绍基本数据结构和算法设计原理",
+    "instructor": "张教授",
+    "startDate": "2023-02-15",
+    "endDate": "2023-06-30",
+    "status": "active",
+    "enrollmentCount": 120,
+    "maxEnrollment": 150,
+    "creditHours": 4
+  },
+  {
+    "id": 2,
+    "title": "机器学习基础",
+    "code": "AI301",
+    "description": "机器学习基本理论和应用实践",
+    "instructor": "李教授",
+    "startDate": "2023-02-20",
+    "endDate": "2023-07-10",
+    "status": "active",
+    "enrollmentCount": 85,
+    "maxEnrollment": 100,
+    "creditHours": 3
+  },
+  {
+    "id": 3,
+    "title": "网络安全原理",
+    "code": "SEC401",
+    "description": "计算机网络安全基本原理与实践",
+    "instructor": "王教授",
+    "startDate": "2023-03-01",
+    "endDate": "2023-07-15",
+    "status": "active",
+    "enrollmentCount": 60,
+    "maxEnrollment": 80,
+    "creditHours": 3
+  },
+  {
+    "id": 4,
+    "title": "数据库系统",
+    "code": "DB301",
+    "description": "数据库设计、查询优化与管理",
+    "instructor": "陈教授",
+    "startDate": "2023-03-05",
+    "endDate": "2023-07-20",
+    "status": "active",
+    "enrollmentCount": 95,
+    "maxEnrollment": 120,
+    "creditHours": 4
+  }
+] 

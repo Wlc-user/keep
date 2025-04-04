@@ -1,0 +1,69 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": [
+    {
+      "id": 1,
+      "title": "HTML基础教程",
+      "description": "HTML入门指南，包含基本标签和页面结构",
+      "fileUrl": "/assets/materials/html-guide.pdf",
+      "thumbnailUrl": "/assets/thumbnails/html.jpg",
+      "fileType": "pdf",
+      "fileSize": 1024000,
+      "uploadDate": "2025-03-25",
+      "downloadCount": 45,
+      "isPublic": true,
+      "courseId": 1,
+      "uploader": {
+        "id": "teacher1",
+        "displayName": "张老师"
+      },
+      "category": {
+        "id": 1,
+        "name": "Web开发"
+      }
+    },
+    {
+      "id": 2,
+      "title": "CSS样式表教程",
+      "description": "CSS样式表详解，包括选择器、布局和响应式设计",
+      "fileUrl": "/assets/materials/css-guide.pdf",
+      "thumbnailUrl": "/assets/thumbnails/css.jpg",
+      "fileType": "pdf",
+      "fileSize": 1536000,
+      "uploadDate": "2025-03-26",
+      "downloadCount": 38,
+      "isPublic": true,
+      "courseId": 1,
+      "uploader": {
+        "id": "teacher1",
+        "displayName": "张老师"
+      },
+      "category": {
+        "id": 1,
+        "name": "Web开发"
+      }
+    },
+    {
+      "id": 3,
+      "title": "数据结构概述",
+      "description": "介绍常见的数据结构及其时间复杂度分析",
+      "fileUrl": "/assets/materials/data-structures.pdf",
+      "thumbnailUrl": "/assets/thumbnails/data-structure.jpg",
+      "fileType": "pdf",
+      "fileSize": 2048000,
+      "uploadDate": "2025-03-27",
+      "downloadCount": 28,
+      "isPublic": true,
+      "courseId": 2,
+      "uploader": {
+        "id": "teacher2",
+        "displayName": "李老师"
+      },
+      "category": {
+        "id": 2,
+        "name": "算法与数据结构"
+      }
+    }
+  ]
+} 

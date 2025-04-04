@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>测试页面</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f2f5;
+    }
+    .container {
+      text-align: center;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #1890ff;
+    }
+    button {
+      background-color: #1890ff;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: #40a9ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>测试页面</h1>
+    <p>如果您能看到此页面，说明服务器正在正确提供静态文件。</p>
+    <p>您可以尝试访问主应用：</p>
+    <button onclick="window.location.href='/'">前往主应用</button>
+  </div>
+</body>
+</html> 

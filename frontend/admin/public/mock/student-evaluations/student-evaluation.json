@@ -1,0 +1,41 @@
+{
+  "success": true,
+  "message": "获取学生评估成功",
+  "data": {
+    "id": "1",
+    "studentId": "1001",
+    "studentName": "李明",
+    "academicYear": "2023-2024",
+    "semester": "第一学期",
+    "courseId": "CS101",
+    "courseName": "计算机导论",
+    "evaluator": "陈教授",
+    "evaluationDate": "2023-12-20",
+    "overallScore": 87,
+    "evaluations": [
+      {
+        "dimension": "学术表现",
+        "score": 90,
+        "comments": "对基础概念掌握扎实，课堂讨论积极参与"
+      },
+      {
+        "dimension": "学习态度",
+        "score": 85,
+        "comments": "作业按时完成，质量良好，但有小细节需改进"
+      },
+      {
+        "dimension": "实践能力",
+        "score": 88,
+        "comments": "实验操作熟练，能够独立解决问题"
+      },
+      {
+        "dimension": "团队协作",
+        "score": 84,
+        "comments": "在小组项目中能够承担责任，与同学合作良好"
+      }
+    ],
+    "strengths": "对计算机基础知识理解深入，编程实践能力强，善于思考和分析问题",
+    "areasForImprovement": "建议加强数学基础，更多参与团队合作项目，提高沟通表达能力",
+    "overallComment": "李明是一位有潜力的学生，学习能力强，对计算机科学有浓厚兴趣。建议继续保持良好的学习习惯，加强实践项目的参与。"
+  }
+} 

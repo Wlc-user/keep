@@ -1,0 +1,52 @@
+.course-form-container {
+  padding: 20px;
+}
+
+.settings-card {
+  margin-bottom: 20px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.objectives-container {
+  margin-top: 16px;
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  padding: 16px;
+}
+
+.objective-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px dashed #f0f0f0;
+}
+
+.objective-item:last-child {
+  border-bottom: none;
+}
+
+.add-objective {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+@media screen and (max-width: 768px) {
+  .settings-card {
+    margin-top: 24px;
+  }
+  
+  .add-objective {
+    flex-direction: column;
+  }
+  
+  .add-objective input {
+    width: 100% !important;
+  }
+} 

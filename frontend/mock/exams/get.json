@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "title": "网络安全基础考试",
+    "description": "测试学生对网络安全基础知识的掌握程度",
+    "startTime": "2023-09-01T09:00:00Z",
+    "endTime": "2023-09-01T11:00:00Z",
+    "totalScore": 100,
+    "passingScore": 60,
+    "status": "已完成",
+    "questionCount": 50
+  },
+  {
+    "id": 2,
+    "title": "数据结构期中考试",
+    "description": "数据结构与算法期中考试，涵盖基本数据类型及操作",
+    "startTime": "2023-10-15T14:00:00Z",
+    "endTime": "2023-10-15T16:00:00Z",
+    "totalScore": 100,
+    "passingScore": 70,
+    "status": "未开始",
+    "questionCount": 40
+  },
+  {
+    "id": 3,
+    "title": "机器学习基础测验",
+    "description": "机器学习基础概念和算法理解测验",
+    "startTime": "2023-11-05T10:00:00Z",
+    "endTime": "2023-11-05T12:00:00Z",
+    "totalScore": 100,
+    "passingScore": 65,
+    "status": "进行中",
+    "questionCount": 30
+  }
+] 

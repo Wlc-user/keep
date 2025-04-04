@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>在线学习系统 - 管理后台</title>
+    <!-- 简化Google Fonts引用 -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- 关键CSS和加载动画 -->
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+        background-color: #f0f2f5;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      #initial-loader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+        width: 100vw;
+      }
+      .loading-spinner {
+        border: 4px solid rgba(24, 144, 255, 0.1);
+        border-left: 4px solid #1890ff;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+      }
+      .loading-text {
+        margin-top: 16px;
+        font-size: 16px;
+        color: #1890ff;
+      }
+    </style>
+    <!-- 移除可能导致问题的base标签和外部CSS -->
+  </head>
+  <body>
+    <div id="root">
+      <!-- 初始加载动画 -->
+      <div id="initial-loader">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">加载中，请稍候...</div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+    <!-- 移除可能导致问题的分析和反馈脚本 -->
+  </body>
+</html> 

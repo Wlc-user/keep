@@ -1,0 +1,67 @@
+[
+  {
+    "id": 1,
+    "title": "数据结构基础教材",
+    "type": "textbook",
+    "format": "pdf",
+    "description": "数据结构与算法分析基础教材，包含各种数据结构的详细讲解",
+    "author": "张教授",
+    "uploadDate": "2023-02-18T09:30:00Z",
+    "size": 15240000,
+    "url": "/materials/data-structure-basics.pdf",
+    "courseId": 1,
+    "downloadCount": 210
+  },
+  {
+    "id": 2,
+    "title": "算法设计实践",
+    "type": "slides",
+    "format": "pptx",
+    "description": "算法设计课程PPT，包含常见算法设计范式和例题",
+    "author": "张教授",
+    "uploadDate": "2023-02-25T14:15:00Z",
+    "size": 8560000,
+    "url": "/materials/algorithm-design-practice.pptx",
+    "courseId": 1,
+    "downloadCount": 185
+  },
+  {
+    "id": 3,
+    "title": "机器学习导论",
+    "type": "textbook",
+    "format": "pdf",
+    "description": "机器学习基础理论与应用导论教材",
+    "author": "李教授",
+    "uploadDate": "2023-02-22T10:45:00Z",
+    "size": 20480000,
+    "url": "/materials/intro-to-machine-learning.pdf",
+    "courseId": 2,
+    "downloadCount": 150
+  },
+  {
+    "id": 4,
+    "title": "机器学习算法实现代码",
+    "type": "code",
+    "format": "zip",
+    "description": "常见机器学习算法的Python实现代码",
+    "author": "李教授",
+    "uploadDate": "2023-03-10T16:30:00Z",
+    "size": 5120000,
+    "url": "/materials/ml-algorithms-code.zip",
+    "courseId": 2,
+    "downloadCount": 130
+  },
+  {
+    "id": 5,
+    "title": "网络安全基础概念",
+    "type": "textbook",
+    "format": "pdf",
+    "description": "网络安全基本概念、攻击类型和防御策略",
+    "author": "王教授",
+    "uploadDate": "2023-03-05T11:20:00Z",
+    "size": 12800000,
+    "url": "/materials/network-security-basics.pdf",
+    "courseId": 3,
+    "downloadCount": 95
+  }
+] 

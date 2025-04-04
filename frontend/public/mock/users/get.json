@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "username": "admin",
+    "name": "管理员",
+    "email": "admin@example.com",
+    "role": "admin",
+    "status": "active",
+    "createdAt": "2023-01-01T00:00:00Z",
+    "lastLogin": "2023-03-28T08:30:00Z"
+  },
+  {
+    "id": 2,
+    "username": "teacher1",
+    "name": "张老师",
+    "email": "teacher1@example.com",
+    "role": "teacher",
+    "status": "active",
+    "createdAt": "2023-01-10T09:00:00Z",
+    "lastLogin": "2023-03-27T14:20:00Z"
+  },
+  {
+    "id": 3,
+    "username": "student1",
+    "name": "李学生",
+    "email": "student1@example.com",
+    "role": "student",
+    "status": "active",
+    "createdAt": "2023-02-15T10:30:00Z",
+    "lastLogin": "2023-03-28T09:15:00Z"
+  },
+  {
+    "id": 4,
+    "username": "student2",
+    "name": "王学生",
+    "email": "student2@example.com",
+    "role": "student",
+    "status": "active",
+    "createdAt": "2023-02-20T11:45:00Z",
+    "lastLogin": "2023-03-28T10:05:00Z"
+  }
+] 

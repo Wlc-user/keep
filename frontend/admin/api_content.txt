@@ -1,0 +1,687 @@
+﻿import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { message } from 'antd';
+import config from '../config/env';
+import mockService from './mockService';
+
+// API璇锋眰閰嶇疆
+const DEFAULT_CONFIG: AxiosRequestConfig = {
+  baseURL: config.API_BASE_URL,
+  timeout: config.API_TIMEOUT,
+  headers: {
+    'Content-Type': 'application/json',
+  }
+};
+
+/**
+ * API鏈嶅姟绫? * 澶勭悊鎵€鏈夊鍚庣鐨勮姹? */
+class ApiService {
+  private instance: AxiosInstance;
+  public isMockEnabled: boolean;
+
+  constructor(config: AxiosRequestConfig & { USE_MOCK_DATA?: boolean }) {
+    this.instance = axios.create(config);
+    this.isMockEnabled = config.USE_MOCK_DATA === true;
+    
+    this.setupInterceptors();
+  }
+
+  /**
+   * 璁剧疆璇锋眰鍜屽搷搴旀嫤鎴櫒
+   */
+  private setupInterceptors(): void {
+// 璇锋眰鎷︽埅鍣?    this.instance.interceptors.request.use(
+      (config) => {
+        // 鑾峰彇瀛樺偍鐨勪护鐗?    const token = localStorage.getItem('token');
+    if (token && config.headers) {
+          // 灏嗕护鐗屾坊鍔犲埌璇锋眰澶?      config.headers['Authorization'] = `Bearer ${token}`;
+    }
+    return config;
+  },
+      (error) => {
+        console.error('璇锋眰鎷︽埅鍣ㄩ敊璇?', error);
+    return Promise.reject(error);
+  }
+);
+
+// 鍝嶅簲鎷︽埅鍣?    this.instance.interceptors.response.use(
+      (response) => {
+        // 澶勭悊鎴愬姛鍝嶅簲
+        return this.handleSuccessResponse(response);
+      },
+      (error) => {
+        // 澶勭悊閿欒鍝嶅簲
+        return this.handleErrorResponse(error);
+      }
+    );
+  }
+
+  /**
+   * 澶勭悊鎴愬姛鐨勫搷搴?   * @param response Axios鍝嶅簲瀵硅薄
+   * @returns 澶勭悊鍚庣殑鏁版嵁
+   * @private
+   */
+  private handleSuccessResponse(response: AxiosResponse): any {
+    if (!response || !response.data) {
+      throw new Error('鍝嶅簲鏁版嵁涓虹┖');
+    }
+
+    // 澶勭悊鏍囧噯API鍝嶅簲鏍煎紡
+    if (response.data.hasOwnProperty('code') && response.data.hasOwnProperty('data')) {
+      const { code, message, data } = response.data;
+      
+      // 濡傛灉杩斿洖鐨勪唬鐮佷笉鏄垚鍔燂紝鎶涘嚭閿欒
+      if (code !== 200 && code !== 0) {
+        const error = new Error(message || '璇锋眰澶辫触');
+        (error as any).code = code;
+        (error as any).response = response;
+        throw error;
+      }
+      
+      return data;
+    }
+    
+    // 濡傛灉涓嶆槸鏍囧噯鏍煎紡锛岀洿鎺ヨ繑鍥炴暟鎹?    return response.data;
+  }
+
+  /**
+   * 澶勭悊閿欒鍝嶅簲
+   * @param error Axios閿欒瀵硅薄
+   * @returns 鎷掔粷鐨凱romise
+   * @private
+   */
+  private handleErrorResponse(error: any): Promise<never> {
+    console.error('API璇锋眰閿欒:', error);
+    
+    let message = '璇锋眰澶辫触锛岃绋嶅悗閲嶈瘯';
+    let code = 'UNKNOWN_ERROR';
+    let details = null;
+    
+    if (error.response) {
+      // 鏈嶅姟鍣ㄥ搷搴斾簡锛屼絾鐘舵€佺爜涓嶅湪 2xx 鑼冨洿鍐?      const { status } = error.response;
+      
+      switch (status) {
+        case 401:
+          message = '鏈櫥褰曟垨鐧诲綍宸茶繃鏈燂紝璇烽噸鏂扮櫥褰?;
+          code = 'UNAUTHORIZED';
+          // 鍙互鍦ㄦ瑙﹀彂鐧诲嚭鎿嶄綔
+          break;
+        case 403:
+          message = '鎮ㄦ病鏈夋潈闄愯闂璧勬簮';
+          code = 'FORBIDDEN';
+          break;
+        case 404:
+          message = '璇锋眰鐨勮祫婧愪笉瀛樺湪';
+          code = 'NOT_FOUND';
+          break;
+        case 500:
+          message = '鏈嶅姟鍣ㄩ敊璇紝璇疯仈绯荤鐞嗗憳';
+          code = 'SERVER_ERROR';
+          break;
+        default:
+          message = error.response.data?.message || `璇锋眰澶辫触锛岀姸鎬佺爜: ${status}`;
+          code = `HTTP_ERROR_${status}`;
+      }
+      
+      details = error.response.data;
+    } else if (error.request) {
+      // 璇锋眰宸插彂鍑猴紝浣嗘病鏈夋敹鍒板搷搴?      message = '鏈嶅姟鍣ㄦ棤鍝嶅簲锛岃妫€鏌ユ偍鐨勭綉缁滆繛鎺?;
+      code = 'NO_RESPONSE';
+    } else {
+      // 璇锋眰閰嶇疆鏃跺嚭閿?      message = error.message || '璇锋眰閰嶇疆閿欒';
+      code = 'REQUEST_SETUP_ERROR';
+    }
+    
+    // 鍒涘缓缁熶竴鐨勯敊璇璞?    const apiError: any = new Error(message);
+    apiError.code = code;
+    apiError.details = details;
+    apiError.originalError = error;
+    
+    // 杩斿洖琚嫆缁濈殑Promise
+    return Promise.reject(apiError);
+  }
+
+  /**
+   * 澶勭悊鎵€鏈夌被鍨嬬殑璇锋眰
+   */
+  private async handleRequest<T>(
+    method: string,
+    url: string,
+    data?: any,
+    config?: AxiosRequestConfig & { useMock?: boolean }
+  ): Promise<T> {
+    // 浣跨敤鐜閰嶇疆涓殑 USE_MOCK_DATA 浣滀负榛樿鍊?    const useMock = config?.useMock !== undefined ? config.useMock : this.isMockEnabled;
+    
+    // 濡傛灉鍚敤浜嗘ā鎷熸暟鎹紝鐩存帴浣跨敤妯℃嫙鏁版嵁锛屼笉灏濊瘯璋冪敤鐪熷疄API
+    if (useMock) {
+      console.log(`${method} ${url} 浣跨敤妯℃嫙鏁版嵁妯″紡`);
+      
+      // 灏濊瘯鑾峰彇妯℃嫙鏁版嵁
+      const mockData = await this.mockRequest(method, url, data);
+      if (mockData !== null) {
+        console.log(`${method} ${url} 鎴愬姛鑾峰彇妯℃嫙鏁版嵁`);
+        return mockData as T;
+      }
+      
+      // 濡傛灉娌℃湁鍖归厤鐨勬ā鎷熸暟鎹紝杩斿洖涓€涓粯璁ゅ搷搴?      console.warn(`${method} ${url} 娌℃湁鍖归厤鐨勬ā鎷熸暟鎹紝杩斿洖绌哄搷搴擿);
+      return {} as T;
+    } else {
+      // 灏濊瘯璋冪敤鐪熷疄API锛屽鏋滃け璐ュ垯鍥為€€鍒版ā鎷熸暟鎹?      try {
+        // 姝ｅ父API璋冪敤娴佺▼
+        const response = await this._request(method, url, data, config);
+        return this.handleSuccessResponse(response);
+      } catch (error) {
+        console.warn(`${method} ${url} 鐪熷疄API璇锋眰澶辫触锛屽皾璇曚娇鐢ㄦā鎷熸暟鎹甡, error);
+        
+        // 濡傛灉閰嶇疆鍏佽鍦ˋPI澶辫触鏃跺洖閫€鍒版ā鎷熸暟鎹?        if (config.API_BASE_URL && config.API_BASE_URL.includes('localhost')) {
+          console.log(`鏈湴寮€鍙戠幆澧冿細${method} ${url} 鍥為€€鍒版ā鎷熸暟鎹甡);
+          const mockData = await this.mockRequest(method, url, data);
+          if (mockData !== null) {
+            console.log(`${method} ${url} 鎴愬姛鑾峰彇妯℃嫙鏁版嵁锛堝洖閫€锛塦);
+            return mockData as T;
+          }
+        }
+        
+        // 濡傛灉娌℃湁妯℃嫙鏁版嵁鎴栦笉鍏佽鍥為€€锛屽垯缁х画鎶涘嚭閿欒
+        return this.handleErrorResponse(error);
+      }
+    }
+  }
+
+  /**
+   * 灏濊瘯浣跨敤mock鏈嶅姟
+   */
+  private async mockRequest(method: string, url: string, data?: any): Promise<any | null> {
+    console.log(`[Mock API] ${method.toUpperCase()} ${url}`);
+    
+    // 寤惰繜浠ユā鎷熺綉缁滆姹?    await new Promise(resolve => setTimeout(resolve, 300 + Math.random() * 700));
+    
+    // 璁よ瘉鐩稿叧API
+    if (url.startsWith('/auth')) {
+      const authPath = url.replace('/auth', '');
+      
+      if (authPath === '/login' && method === 'post') {
+        const { username, password } = data;
+        return mockService.login(username, password);
+      }
+      
+      if (authPath === '/register' && method === 'post') {
+        return { success: true, message: '娉ㄥ唽鎴愬姛', user: data };
+      }
+      
+      return null;
+    }
+    
+    // 璇剧▼鐩稿叧API
+    if (url.startsWith('/courses')) {
+      // 澶勭悊鑾峰彇璇剧▼鍒楄〃
+      if (url === '/courses' && method === 'get') {
+        const { page = 1, pageSize = 10 } = data || {};
+        return mockService.getCourses(Number(page), Number(pageSize));
+      }
+      
+      // 澶勭悊鑾峰彇鍗曚釜璇剧▼
+      const courseMatch = url.match(/\/courses\/([^\/]+)$/);
+      if (courseMatch && method === 'get') {
+        const courseId = courseMatch[1];
+        return mockService.getCourseById(courseId);
+      }
+      
+      return null;
+    }
+    
+    // 鏂囦欢涓婁紶API
+    if (url.startsWith('/api/upload')) {
+      const { checkChunkUploadStatus, uploadChunk, mergeChunks } = await import('./mockUploadService');
+      
+      // 妫€鏌ュ垎鐗囦笂浼犵姸鎬?      if (url === '/api/upload/check' && method === 'get') {
+        const { fileHash } = data;
+        return checkChunkUploadStatus(fileHash);
+      }
+      
+      // 涓婁紶鏂囦欢鍒嗙墖
+      if (url === '/api/upload/chunk' && method === 'post') {
+        // 浠嶧ormData涓彁鍙栧弬鏁?        const file = data.get('file');
+        const fileHash = data.get('fileHash');
+        const filename = data.get('filename');
+        const chunkIndex = parseInt(data.get('chunkIndex'), 10);
+        const chunkSize = parseInt(data.get('chunkSize'), 10);
+        const chunkCount = parseInt(data.get('chunkCount'), 10);
+        const fileSize = parseInt(data.get('fileSize'), 10);
+        
+        return uploadChunk({
+          file,
+          fileHash,
+          filename,
+          chunkIndex,
+          chunkSize,
+          chunkCount,
+          fileSize
+        });
+      }
+      
+      // 鍚堝苟鏂囦欢鍒嗙墖
+      if (url === '/api/upload/merge' && method === 'post') {
+        return mergeChunks(data);
+      }
+      
+      return null;
+    }
+    
+    // 娌℃湁鍖归厤鐨刴ock鏈嶅姟
+    return null;
+  }
+
+  /**
+   * GET璇锋眰
+   */
+  public get<T>(url: string, params?: any, config?: AxiosRequestConfig): Promise<T> {
+    return this.handleRequest<T>('get', url, params, config);
+  }
+
+  /**
+   * POST璇锋眰
+   */
+  public post<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> {
+    return this.handleRequest<T>('post', url, data, config);
+  }
+
+  /**
+   * PUT璇锋眰
+   */
+  public put<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> {
+    return this.handleRequest<T>('put', url, data, config);
+  }
+
+  /**
+   * DELETE璇锋眰
+   */
+  public delete<T>(url: string, params?: any, config?: AxiosRequestConfig): Promise<T> {
+    return this.handleRequest<T>('delete', url, params, config);
+  }
+
+  /**
+   * PATCH璇锋眰
+   */
+  public patch<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> {
+    return this.handleRequest<T>('patch', url, data, config);
+  }
+
+  /**
+   * 涓婁紶鏂囦欢
+   */
+  public upload<T>(url: string, formData: FormData, onProgress?: (percentage: number) => void): Promise<T> {
+    const config: AxiosRequestConfig = {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      },
+      onUploadProgress: (progressEvent) => {
+        if (onProgress && progressEvent.total) {
+          const percentage = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+          onProgress(percentage);
+        }
+      }
+    };
+    
+    return this.post<T>(url, formData, config);
+  }
+
+  /**
+   * 涓嬭浇鏂囦欢
+   */
+  public download(url: string, params?: any): Promise<Blob> {
+    const config: AxiosRequestConfig = {
+      responseType: 'blob'
+    };
+    
+    return this.get(url, params, config);
+  }
+
+  /**
+   * 璁よ瘉鐩稿叧API
+   */
+  public auth = {
+    login: async (username: string, password: string): Promise<any> => {
+      // 棣栧厛妫€鏌ユ槸鍚﹀惎鐢ㄤ簡妯℃嫙鏁版嵁妯″紡
+      if (this.isMockEnabled) {
+        console.log('浣跨敤妯℃嫙鐧诲綍鏁版嵁 - 妯℃嫙鏁版嵁妯″紡宸插惎鐢?);
+        
+        // 妯℃嫙寤惰繜
+        await new Promise(resolve => setTimeout(resolve, 800));
+        
+        // 妯℃嫙鐧诲綍鎴愬姛
+        const userData = {
+          token: `mock-jwt-token-${Date.now()}`,
+          userId: '1',
+          username: username,
+          name: username === 'admin' ? '绠＄悊鍛? : 
+                username === 'teacher' ? '寮犳暀鎺? : '鏉庡悓瀛?,
+          role: username === 'admin' ? 'admin' : 
+                username === 'teacher' ? 'teacher' : 'student',
+          email: `${username}@example.com`
+        };
+        
+        console.log('妯℃嫙鐧诲綍鎴愬姛:', userData);
+        return userData;
+      }
+      
+      // 濡傛灉鏈惎鐢ㄦā鎷熸暟鎹紝鍒欐甯稿彂閫丄PI璇锋眰
+      try {
+        const response = await this.post('/User/login', { username, password });
+        return response;
+      } catch (error) {
+        console.error('鐧诲綍澶辫触:', error);
+        // 濡傛灉鏄綉缁滈敊璇紝杩斿洖鏇村弸濂界殑閿欒淇℃伅
+        if (error.message === 'Network Error') {
+          throw new Error('鏈嶅姟鍣ㄦ棤鍝嶅簲锛岃妫€鏌ユ偍鐨勭綉缁滆繛鎺?);
+        }
+        throw error;
+      }
+    },
+    register: (data: any) => {
+      return this.post('/User/register', data);
+    },
+    forgotPassword: (email: string) => {
+      return this.post('/User/forgot-password', { email });
+    },
+    resetPassword: (token: string, password: string) => {
+      return this.post('/User/reset-password', { token, password });
+    },
+    refreshToken: () => {
+      return this.post('/User/refresh-token');
+    },
+    checkEmailExists: (email: string) => {
+      return this.get('/User/check-email', { email });
+    }
+  };
+
+  /**
+   * 璇剧▼鐩稿叧API
+   */
+  public courses = {
+    getAll: (params?: any) => {
+      return this.get('/courses', params);
+    },
+    getById: (id: string) => {
+      return this.get(`/courses/${id}`);
+    },
+    create: (data: any) => {
+      return this.post('/courses', data);
+    },
+    update: (id: string, data: any) => {
+      return this.put(`/courses/${id}`, data);
+    },
+    delete: (id: string) => {
+      return this.delete(`/courses/${id}`);
+    },
+    enroll: (courseId: string) => {
+      return this.post(`/courses/${courseId}/enroll`);
+    },
+    unenroll: (courseId: string) => {
+      return this.delete(`/courses/${courseId}/enroll`);
+    },
+    getStudents: (courseId: string, params?: any) => {
+      return this.get(`/courses/${courseId}/students`, params);
+    },
+    getMaterials: (courseId: string) => {
+      return this.get(`/courses/${courseId}/materials`);
+    },
+    getProgress: (courseId: string) => {
+      return this.get(`/courses/${courseId}/progress`);
+    },
+    updateProgress: (courseId: string, data: any) => {
+      return this.post(`/courses/${courseId}/progress`, data);
+    }
+  };
+
+  /**
+   * 鐢ㄦ埛鐩稿叧API
+   */
+  public users = {
+    getAll: (params?: any) => {
+      return this.get('/users', params);
+    },
+    getById: (id: string) => {
+      return this.get(`/users/${id}`);
+    },
+    create: (data: any) => {
+      return this.post('/users', data);
+    },
+    update: (id: string, data: any) => {
+      return this.put(`/users/${id}`, data);
+    },
+    delete: (id: string) => {
+      return this.delete(`/users/${id}`);
+    },
+    updateProfile: (data: any) => {
+      return this.put('/users/profile', data);
+    },
+    changePassword: (data: any) => {
+      return this.put('/users/password', data);
+    }
+  };
+
+  /**
+   * 绱犳潗鐩稿叧API
+   */
+  public materials = {
+    getAll: (params?: any) => {
+      return this.get('/materials', params);
+    },
+    getById: (id: string) => {
+      return this.get(`/materials/${id}`);
+    },
+    create: (data: any) => {
+      return this.post('/materials', data);
+    },
+    update: (id: string, data: any) => {
+      return this.put(`/materials/${id}`, data);
+    },
+    delete: (id: string) => {
+      return this.delete(`/materials/${id}`);
+    },
+    approve: (id: string, approved: boolean, comment?: string) => {
+      return this.put(`/materials/${id}/approve`, { approved, comment });
+    },
+    search: (params?: any) => {
+      return this.get('/materials/search', params);
+    },
+    upload: (formData: FormData, onProgress?: (percentage: number) => void) => {
+      return this.upload('/materials/upload', formData, onProgress);
+    },
+    download: (id: string) => {
+      return this.download(`/materials/${id}/download`);
+    },
+    incrementViewCount: (id: string) => {
+      return this.post(`/materials/${id}/view`);
+    }
+  };
+
+  /**
+   * 鏂囦欢涓婁紶鐩稿叧API
+   */
+  public uploads = {
+    // 妫€鏌ュ垎鐗囦笂浼犵姸鎬?    checkChunkStatus: (fileHash: string) => {
+      return this.get('/api/upload/check', { fileHash });
+    },
+    
+    // 涓婁紶鏂囦欢鍒嗙墖
+    uploadChunk: (formData: FormData, onProgress?: (percentage: number) => void) => {
+      return this.upload('/api/upload/chunk', formData, onProgress);
+    },
+    
+    // 鍚堝苟鏂囦欢鍒嗙墖
+    mergeChunks: (params: {
+      fileHash: string;
+      filename: string;
+      fileSize: number;
+      chunkCount: number;
+    }) => {
+      return this.post('/api/upload/merge', params);
+    },
+    
+    // 鍙栨秷涓婁紶
+    cancelUpload: (fileHash: string) => {
+      return this.delete('/api/upload/cancel', { fileHash });
+    }
+  };
+
+  /**
+   * 鍒嗙被鐩稿叧API
+   */
+  public categories = {
+    getAll: () => {
+      return this.get('/categories');
+    },
+    getById: (id: string) => {
+      return this.get(`/categories/${id}`);
+    },
+    create: (data: any) => {
+      return this.post('/categories', data);
+    },
+    update: (id: string, data: any) => {
+      return this.put(`/categories/${id}`, data);
+    },
+    delete: (id: string) => {
+      return this.delete(`/categories/${id}`);
+    }
+  };
+
+  /**
+   * 璇勪环鐩稿叧API
+   */
+  public evaluations = {
+    getStudentEvaluation: (studentId: string, params?: any) => {
+      return this.get(`/evaluations/students/${studentId}`, params);
+    },
+    getClassEvaluation: (classId: string, params?: any) => {
+      return this.get(`/evaluations/classes/${classId}`, params);
+    },
+    saveStudentEvaluation: (data: any) => {
+      return this.post('/evaluations/students', data);
+    },
+    getEvaluationHistory: (studentId: string, params?: any) => {
+      return this.get(`/evaluations/students/${studentId}/history`, params);
+    },
+    exportEvaluation: (studentId: string, format: string) => {
+      return this.download(`/evaluations/students/${studentId}/export`, { format });
+    }
+  };
+
+  /**
+   * 閫氱煡鐩稿叧API
+   */
+  public notifications = {
+    getAll: (params?: any) => {
+      return this.get('/notifications', params);
+    },
+    getById: (id: string) => {
+      return this.get(`/notifications/${id}`);
+    },
+    markAsRead: (id: string) => {
+      return this.put(`/notifications/${id}/read`);
+    },
+    markAllAsRead: () => {
+      return this.put('/notifications/read-all');
+    },
+    getUnreadCount: () => {
+      return this.get('/notifications/unread-count');
+    }
+  };
+
+  /**
+   * 绯荤粺鐩稿叧API
+   */
+  public system = {
+    getSettings: () => {
+      return this.get('/system/settings');
+    },
+    updateSettings: (data: any) => {
+      return this.put('/system/settings', data);
+    },
+    getHealth: () => {
+      return this.get('/system/health');
+    },
+    getLogs: (params?: any) => {
+      return this.get('/system/logs', params);
+    }
+  };
+
+  /**
+   * 鐭ヨ瘑鍥捐氨鐩稿叧API
+   */
+  public knowledgeGraphs = {
+    getAll: (params?: any) => {
+      return this.get('/knowledge-graphs', params);
+    },
+    getById: (id: string) => {
+      return this.get(`/knowledge-graphs/${id}`);
+    },
+    create: (data: any) => {
+      return this.post('/knowledge-graphs', data);
+    },
+    update: (id: string, data: any) => {
+      return this.put(`/knowledge-graphs/${id}`, data);
+    },
+    delete: (id: string) => {
+      return this.delete(`/knowledge-graphs/${id}`);
+    },
+    getPaths: (graphId: string) => {
+      return this.get(`/knowledge-graphs/${graphId}/paths`);
+    },
+    createPath: (graphId: string, data: any) => {
+      return this.post(`/knowledge-graphs/${graphId}/paths`, data);
+    },
+    updatePath: (graphId: string, pathId: string, data: any) => {
+      return this.put(`/knowledge-graphs/${graphId}/paths/${pathId}`, data);
+    },
+    deletePath: (graphId: string, pathId: string) => {
+      return this.delete(`/knowledge-graphs/${graphId}/paths/${pathId}`);
+    }
+  };
+
+  /**
+   * 鍙戦€佸疄闄呯殑 API 璇锋眰
+   * @param method HTTP 鏂规硶
+   * @param url 璇锋眰璺緞
+   * @param data 璇锋眰鏁版嵁
+   * @param config 璇锋眰閰嶇疆
+   * @returns API 鍝嶅簲
+   * @private
+   */
+  private async _request(
+    method: string,
+    url: string,
+    data?: any,
+    config?: AxiosRequestConfig
+  ): Promise<AxiosResponse> {
+    const fullConfig = { ...config };
+    let response;
+
+    switch (method.toLowerCase()) {
+      case 'get':
+        response = await this.instance.get(url, { ...fullConfig, params: data });
+        break;
+      case 'post':
+        response = await this.instance.post(url, data, fullConfig);
+        break;
+      case 'put':
+        response = await this.instance.put(url, data, fullConfig);
+        break;
+      case 'delete':
+        response = await this.instance.delete(url, { ...fullConfig, params: data });
+        break;
+      case 'patch':
+        response = await this.instance.patch(url, data, fullConfig);
+        break;
+      default:
+        throw new Error(`涓嶆敮鎸佺殑HTTP鏂规硶: ${method}`);
+    }
+
+    return response;
+  }
+}
+
+// 鍒涘缓API鏈嶅姟瀹炰緥
+const apiService = new ApiService(DEFAULT_CONFIG);
+
+export default apiService; 

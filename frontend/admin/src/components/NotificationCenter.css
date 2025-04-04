@@ -1,0 +1,155 @@
+/* 通知中心样式 */
+.notification-center {
+  display: inline-block;
+}
+
+.notification-badge {
+  cursor: pointer;
+}
+
+.notification-button {
+  padding: 4px 10px;
+  height: 40px;
+  font-size: 16px;
+}
+
+.notification-dropdown {
+  width: 400px;
+  max-width: 90vw;
+  max-height: 500px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 6px 16px -8px rgba(0, 0, 0, 0.08), 
+              0 9px 28px 0 rgba(0, 0, 0, 0.05), 
+              0 12px 48px 16px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.notification-header {
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  background-color: #fafafa;
+}
+
+.notification-list {
+  max-height: 350px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.notification-tabs {
+  flex: 1;
+}
+
+.notification-tabs .ant-tabs-content {
+  height: 100%;
+}
+
+.notification-footer {
+  padding: 8px 16px;
+  text-align: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  background-color: #fafafa;
+}
+
+.notification-loading {
+  padding: 24px 0;
+  text-align: center;
+}
+
+.notification-empty {
+  padding: 32px 0;
+}
+
+.notification-dropdown-overlay {
+  padding: 0;
+}
+
+/* 暗色主题适配 */
+[data-theme="dark"] .notification-dropdown {
+  background-color: #1f1f1f;
+  box-shadow: 0 6px 16px -8px rgba(0, 0, 0, 0.32), 
+              0 9px 28px 0 rgba(0, 0, 0, 0.2), 
+              0 12px 48px 16px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="dark"] .notification-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: #141414;
+}
+
+[data-theme="dark"] .notification-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: #141414;
+}
+
+/* 响应式调整 */
+@media (max-width: 575px) {
+  .notification-dropdown {
+    width: 100vw;
+    max-width: 100vw;
+    border-radius: 0;
+  }
+}
+
+.notification-item {
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.notification-item:hover {
+  background-color: #f5f5f5;
+}
+
+.notification-unread {
+  background-color: #e6f7ff;
+}
+
+.notification-unread:hover {
+  background-color: #cfeaff;
+}
+
+.notification-content {
+  margin-bottom: 8px;
+  line-height: 1.5;
+  color: #333;
+  max-height: 3em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.notification-footer-actions {
+  text-align: center;
+  padding: 8px 0;
+  border-top: 1px solid #f0f0f0;
+}
+
+/* 暗色主题适配 */
+[data-theme='dark'] .notification-item:hover {
+  background-color: #303030;
+}
+
+[data-theme='dark'] .notification-unread {
+  background-color: #111b26;
+}
+
+[data-theme='dark'] .notification-unread:hover {
+  background-color: #15232e;
+}
+
+[data-theme='dark'] .notification-content {
+  color: #e6e6e6;
+}
+
+[data-theme='dark'] .notification-footer-actions {
+  border-top: 1px solid #303030;
+} 

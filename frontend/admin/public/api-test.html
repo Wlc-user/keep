@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API测试页面</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f2f5;
+    }
+    .container {
+      text-align: center;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      width: 80%;
+      max-width: 800px;
+    }
+    h1 {
+      color: #1890ff;
+    }
+    button {
+      background-color: #1890ff;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 20px;
+      margin-right: 10px;
+    }
+    button:hover {
+      background-color: #40a9ff;
+    }
+    #result {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #f5f5f5;
+      border-radius: 4px;
+      text-align: left;
+      max-height: 400px;
+      overflow: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f0f2f5;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>API连接测试</h1>
+    <p>点击下面的按钮测试与后端API的连接：</p>
+    
+    <div>
+      <button onclick="testHealth()">测试健康检查</button>
+      <button onclick="testAuth()">测试认证接口</button>
+      <button onclick="testLogin()">测试登录</button>
+    </div>
+    
+    <div id="result">
+      <p>结果将显示在这里...</p>
+    </div>
+    
+    <div>
+      <h3>常用测试账户</h3>
+      <table>
+        <tr>
+          <th>用户名</th>
+          <th>密码</th>
+          <th>角色</th>
+        </tr>
+        <tr>
+          <td>admin</td>
+          <td>Admin123!</td>
+          <td>管理员</td>
+        </tr>
+        <tr>
+          <td>teacher</td>
+          <td>Teacher123!</td>
+          <td>教师</td>
+        </tr>
+        <tr>
+          <td>student</td>
+          <td>Student123!</td>
+          <td>学生</td>
+        </tr>
+      </table>
+    </div>
+    
+    <button onclick="window.location.href='/'">返回主应用</button>
+  </div>
+
+  <script>
+    // 显示结果的函数
+    function showResult(title, data, error = false) {
+      const resultDiv = document.getElementById('result');
+      let content = `<h3>${title}</h3>`;
+      
+      if (error) {
+        content += `<p style="color: red;">错误: ${JSON.stringify(data)}</p>`;
+      } else {
+        content += `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+      }
+      
+      resultDiv.innerHTML = content;
+    }
+
+    // 测试健康检查
+    async function testHealth() {
+      try {
+        const response = await fetch('/api/health');
+        const data = await response.json();
+        showResult('健康检查结果', {
+          status: response.status,
+          statusText: response.statusText,
+          data: data
+        });
+      } catch (error) {
+        showResult('健康检查失败', error, true);
+      }
+    }
+
+    // 测试认证接口
+    async function testAuth() {
+      try {
+        const token = localStorage.getItem('token');
+        const headers = token ? { 'Authorization': `Bearer ${token}` } : {};
+        
+        const response = await fetch('/api/auth/validate', {
+          headers: headers
+        });
+        
+        const data = await response.json();
+        showResult('认证接口测试结果', {
+          status: response.status,
+          statusText: response.statusText,
+          data: data
+        });
+      } catch (error) {
+        showResult('认证接口测试失败', error, true);
+      }
+    }
+
+    // 测试登录
+    async function testLogin() {
+      try {
+        const response = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            Username: 'admin',
+            Password: 'Admin123!'
+          })
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok) {
+          // 保存token
+          if (data.token) {
+            localStorage.setItem('token', data.token);
+          }
+          if (data.refreshToken) {
+            localStorage.setItem('refreshToken', data.refreshToken);
+          }
+        }
+        
+        showResult('登录测试结果', {
+          status: response.status,
+          statusText: response.statusText,
+          data: data
+        });
+      } catch (error) {
+        showResult('登录测试失败', error, true);
+      }
+    }
+  </script>
+</body>
+</html> 

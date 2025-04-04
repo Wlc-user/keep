@@ -1,0 +1,16 @@
+{
+  "success": true,
+  "message": "学生评估保存成功",
+  "data": {
+    "id": "6",
+    "studentId": "1001",
+    "studentName": "李明",
+    "academicYear": "2023-2024",
+    "semester": "第一学期",
+    "courseId": "CS101",
+    "courseName": "计算机导论",
+    "evaluator": "陈教授",
+    "evaluationDate": "2023-12-22",
+    "overallScore": 87
+  }
+} 

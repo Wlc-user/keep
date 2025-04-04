@@ -1,0 +1,58 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": [
+    {
+      "id": 1,
+      "title": "Web开发技术栈",
+      "description": "Web开发相关技术的关联图谱",
+      "nodes": [
+        { "id": "html", "label": "HTML", "group": "frontend" },
+        { "id": "css", "label": "CSS", "group": "frontend" },
+        { "id": "js", "label": "JavaScript", "group": "frontend" },
+        { "id": "react", "label": "React", "group": "frontend" },
+        { "id": "node", "label": "Node.js", "group": "backend" },
+        { "id": "express", "label": "Express", "group": "backend" },
+        { "id": "mongo", "label": "MongoDB", "group": "database" }
+      ],
+      "edges": [
+        { "from": "html", "to": "css" },
+        { "from": "html", "to": "js" },
+        { "from": "css", "to": "js" },
+        { "from": "js", "to": "react" },
+        { "from": "js", "to": "node" },
+        { "from": "node", "to": "express" },
+        { "from": "express", "to": "mongo" }
+      ],
+      "courseId": 1,
+      "createdBy": "teacher1",
+      "createdAt": "2025-03-28"
+    },
+    {
+      "id": 2,
+      "title": "数据结构关系图",
+      "description": "常见数据结构之间的关系与演化",
+      "nodes": [
+        { "id": "array", "label": "数组", "group": "basic" },
+        { "id": "linked", "label": "链表", "group": "basic" },
+        { "id": "stack", "label": "栈", "group": "linear" },
+        { "id": "queue", "label": "队列", "group": "linear" },
+        { "id": "tree", "label": "树", "group": "hierarchical" },
+        { "id": "graph", "label": "图", "group": "hierarchical" },
+        { "id": "hash", "label": "哈希表", "group": "advanced" }
+      ],
+      "edges": [
+        { "from": "array", "to": "stack" },
+        { "from": "array", "to": "queue" },
+        { "from": "linked", "to": "stack" },
+        { "from": "linked", "to": "queue" },
+        { "from": "linked", "to": "tree" },
+        { "from": "tree", "to": "graph" },
+        { "from": "array", "to": "hash" }
+      ],
+      "courseId": 2,
+      "createdBy": "teacher2",
+      "createdAt": "2025-03-29"
+    }
+  ]
+} 

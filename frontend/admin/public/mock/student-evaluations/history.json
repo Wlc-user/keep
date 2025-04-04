@@ -1,0 +1,176 @@
+{
+  "success": true,
+  "message": "获取学生评估历史成功",
+  "data": [
+    {
+      "id": "1",
+      "date": "2023-12-15",
+      "academicYear": "2023-2024",
+      "semester": "第一学期",
+      "evaluator": "王老师",
+      "courseId": "101",
+      "courseName": "高等数学",
+      "evaluation": {
+        "studentId": "1",
+        "studentName": "张三",
+        "academicYear": "2023-2024",
+        "semester": "第一学期",
+        "overallScore": 85,
+        "evaluations": [
+          {
+            "dimension": "学术表现",
+            "score": 88,
+            "comments": "课堂参与度高，作业提交及时"
+          },
+          {
+            "dimension": "行为习惯",
+            "score": 82,
+            "comments": "上课认真听讲，但偶有迟到现象"
+          },
+          {
+            "dimension": "团队协作",
+            "score": 85,
+            "comments": "在小组活动中表现积极"
+          }
+        ],
+        "overallComment": "整体表现良好，是一位积极主动的学生"
+      }
+    },
+    {
+      "id": "2",
+      "date": "2023-11-10",
+      "academicYear": "2023-2024",
+      "semester": "第一学期",
+      "evaluator": "李老师",
+      "courseId": "102",
+      "courseName": "数据结构",
+      "evaluation": {
+        "studentId": "1",
+        "studentName": "张三",
+        "academicYear": "2023-2024",
+        "semester": "第一学期",
+        "overallScore": 90,
+        "evaluations": [
+          {
+            "dimension": "学术表现",
+            "score": 92,
+            "comments": "对算法理解深入，编程能力强"
+          },
+          {
+            "dimension": "行为习惯",
+            "score": 88,
+            "comments": "课堂专注度高，提问积极"
+          },
+          {
+            "dimension": "团队协作",
+            "score": 85,
+            "comments": "能够帮助同学解决问题"
+          }
+        ],
+        "overallComment": "在编程和算法方面展现出特别的才能"
+      }
+    },
+    {
+      "id": "3",
+      "date": "2023-10-05",
+      "academicYear": "2023-2024",
+      "semester": "第一学期",
+      "evaluator": "赵老师",
+      "courseId": "103",
+      "courseName": "计算机网络",
+      "evaluation": {
+        "studentId": "1",
+        "studentName": "张三",
+        "academicYear": "2023-2024",
+        "semester": "第一学期",
+        "overallScore": 82,
+        "evaluations": [
+          {
+            "dimension": "学术表现",
+            "score": 80,
+            "comments": "基础知识掌握良好，但应用能力需要提高"
+          },
+          {
+            "dimension": "行为习惯",
+            "score": 85,
+            "comments": "遵守课堂规则，认真完成作业"
+          },
+          {
+            "dimension": "团队协作",
+            "score": 80,
+            "comments": "能够配合团队工作"
+          }
+        ],
+        "overallComment": "学习态度认真，继续强化实践应用能力"
+      }
+    },
+    {
+      "id": "4",
+      "date": "2023-09-20",
+      "academicYear": "2023-2024",
+      "semester": "第一学期",
+      "evaluator": "钱老师",
+      "courseId": "104",
+      "courseName": "操作系统",
+      "evaluation": {
+        "studentId": "1",
+        "studentName": "张三",
+        "academicYear": "2023-2024",
+        "semester": "第一学期",
+        "overallScore": 86,
+        "evaluations": [
+          {
+            "dimension": "学术表现",
+            "score": 85,
+            "comments": "理论知识掌握牢固，实验操作熟练"
+          },
+          {
+            "dimension": "行为习惯",
+            "score": 88,
+            "comments": "课堂表现积极，勤于思考"
+          },
+          {
+            "dimension": "团队协作",
+            "score": 82,
+            "comments": "在团队项目中承担责任，完成任务"
+          }
+        ],
+        "overallComment": "对操作系统原理有较好理解，实验能力较强"
+      }
+    },
+    {
+      "id": "5",
+      "date": "2023-08-30",
+      "academicYear": "2023-2024",
+      "semester": "第一学期",
+      "evaluator": "孙老师",
+      "courseId": "105",
+      "courseName": "软件工程",
+      "evaluation": {
+        "studentId": "1",
+        "studentName": "张三",
+        "academicYear": "2023-2024",
+        "semester": "第一学期",
+        "overallScore": 88,
+        "evaluations": [
+          {
+            "dimension": "学术表现",
+            "score": 87,
+            "comments": "项目设计和开发能力强"
+          },
+          {
+            "dimension": "行为习惯",
+            "score": 90,
+            "comments": "工作态度认真负责"
+          },
+          {
+            "dimension": "团队协作",
+            "score": 89,
+            "comments": "团队协作能力突出，能够协调团队工作"
+          }
+        ],
+        "overallComment": "在团队项目中表现出色，项目管理能力强"
+      }
+    }
+  ]
+} 

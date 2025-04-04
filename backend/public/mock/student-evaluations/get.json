@@ -1,0 +1,57 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": [
+    {
+      "id": 1,
+      "studentId": "student1",
+      "studentName": "张三",
+      "courseId": 1,
+      "courseName": "Web开发入门",
+      "evaluationDate": "2025-06-28",
+      "attendance": 90,
+      "participation": 85,
+      "assignments": 88,
+      "midtermScore": 82,
+      "finalScore": 86,
+      "overallScore": 85,
+      "comments": "学习认真，积极参与课堂讨论，期末项目完成得很出色",
+      "teacherId": "teacher1",
+      "createdAt": "2025-06-28"
+    },
+    {
+      "id": 2,
+      "studentId": "student2",
+      "studentName": "李四",
+      "courseId": 1,
+      "courseName": "Web开发入门",
+      "evaluationDate": "2025-06-28",
+      "attendance": 95,
+      "participation": 75,
+      "assignments": 92,
+      "midtermScore": 88,
+      "finalScore": 90,
+      "overallScore": 88,
+      "comments": "作业质量高，有很好的编程潜力，但课堂参与度可以再提高",
+      "teacherId": "teacher1",
+      "createdAt": "2025-06-28"
+    },
+    {
+      "id": 3,
+      "studentId": "student3",
+      "studentName": "王五",
+      "courseId": 2,
+      "courseName": "数据结构与算法",
+      "evaluationDate": "2025-07-03",
+      "attendance": 88,
+      "participation": 90,
+      "assignments": 86,
+      "midtermScore": 84,
+      "finalScore": 82,
+      "overallScore": 85,
+      "comments": "课堂表现活跃，理解能力强，解题思路清晰",
+      "teacherId": "teacher2",
+      "createdAt": "2025-07-03"
+    }
+  ]
+} 

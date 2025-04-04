@@ -1,0 +1,568 @@
+/* 主题变量定义 */
+:root {
+  /* 主色调 */
+  --primary-color: #1890ff;
+  --primary-color-hover: #40a9ff;
+  --primary-color-active: #096dd9;
+  --primary-color-outline: rgba(24, 144, 255, 0.2);
+  --primary-color-bg: rgba(24, 144, 255, 0.1);
+  
+  /* 成功色 */
+  --success-color: #52c41a;
+  --success-color-hover: #73d13d;
+  --success-color-active: #389e0d;
+  --success-color-outline: rgba(82, 196, 26, 0.2);
+  --success-color-bg: rgba(82, 196, 26, 0.1);
+  
+  /* 警告色 */
+  --warning-color: #faad14;
+  --warning-color-hover: #ffc53d;
+  --warning-color-active: #d48806;
+  --warning-color-outline: rgba(250, 173, 20, 0.2);
+  --warning-color-bg: rgba(250, 173, 20, 0.1);
+  
+  /* 错误色 */
+  --error-color: #f5222d;
+  --error-color-hover: #ff4d4f;
+  --error-color-active: #cf1322;
+  --error-color-outline: rgba(245, 34, 45, 0.2);
+  --error-color-bg: rgba(255, 77, 79, 0.1);
+  
+  /* 中性色 */
+  --heading-color: rgba(0, 0, 0, 0.85);
+  --text-color: rgba(0, 0, 0, 0.85);
+  --text-color-secondary: rgba(0, 0, 0, 0.45);
+  --disabled-color: rgba(0, 0, 0, 0.25);
+  --border-color: #d9d9d9;
+  --divider-color: #f0f0f0;
+  
+  /* 背景色 */
+  --body-background: #f0f2f5;
+  --component-background: #fff;
+  --item-hover-bg: #f5f5f5;
+  --item-active-bg: #e6f7ff;
+  
+  /* 链接颜色 */
+  --link-color: #1890ff;
+  --link-hover-color: #40a9ff;
+  --link-active-color: #096dd9;
+  
+  /* 阴影 */
+  --box-shadow-base: 0 2px 8px rgba(0, 0, 0, 0.15);
+  --box-shadow-card: 0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12), 0 5px 12px 4px rgba(0, 0, 0, 0.09);
+  
+  /* 字体 */
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-size-base: 14px;
+  --font-size-sm: 12px;
+  --font-size-lg: 16px;
+  --font-size-xl: 20px;
+  --font-size-xxl: 24px;
+  --line-height-base: 1.5715;
+  
+  /* 圆角 */
+  --border-radius-base: 4px;
+  --border-radius-sm: 2px;
+  --border-radius-lg: 8px;
+  
+  /* 动画 */
+  --animation-duration-base: 0.2s;
+  --animation-duration-slow: 0.3s;
+  --animation-duration-fast: 0.1s;
+  
+  /* 表单 */
+  --form-item-margin-bottom: 24px;
+  --form-label-color: #262626; /* 表单标签颜色，加深以提高对比度 */
+}
+
+/* 深色主题 */
+[data-theme='dark'] {
+  /* 主色调 */
+  --primary-color: #177ddc;
+  --primary-color-hover: #3c9ae8;
+  --primary-color-active: #0e5aa7;
+  --primary-color-outline: rgba(23, 125, 220, 0.2);
+  --primary-color-bg: rgba(23, 125, 220, 0.1);
+  
+  /* 成功色 */
+  --success-color: #49aa19;
+  --success-color-hover: #6abe39;
+  --success-color-active: #3c8618;
+  --success-color-outline: rgba(73, 170, 25, 0.2);
+  --success-color-bg: rgba(73, 170, 25, 0.1);
+  
+  /* 警告色 */
+  --warning-color: #d89614;
+  --warning-color-hover: #e8b339;
+  --warning-color-active: #aa7714;
+  --warning-color-outline: rgba(216, 150, 20, 0.2);
+  --warning-color-bg: rgba(216, 150, 20, 0.1);
+  
+  /* 错误色 */
+  --error-color: #a61d24;
+  --error-color-hover: #c72836;
+  --error-color-active: #7d1a1f;
+  --error-color-outline: rgba(166, 29, 36, 0.2);
+  --error-color-bg: rgba(211, 32, 41, 0.1);
+  
+  /* 中性色 */
+  --heading-color: rgba(255, 255, 255, 0.85);
+  --text-color: rgba(255, 255, 255, 0.85);
+  --text-color-secondary: rgba(255, 255, 255, 0.45);
+  --disabled-color: rgba(255, 255, 255, 0.25);
+  --border-color: #434343;
+  --divider-color: #303030;
+  
+  /* 背景色 */
+  --body-background: #141414;
+  --component-background: #1f1f1f;
+  --item-hover-bg: #262626;
+  --item-active-bg: #1f1f1f;
+  
+  /* 链接颜色 */
+  --link-color: #177ddc;
+  --link-hover-color: #3c9ae8;
+  --link-active-color: #0e5aa7;
+  
+  /* 阴影 */
+  --box-shadow-base: 0 2px 8px rgba(0, 0, 0, 0.65);
+  --box-shadow-card: 0 1px 2px -2px rgba(0, 0, 0, 0.64), 0 3px 6px 0 rgba(0, 0, 0, 0.48), 0 5px 12px 4px rgba(0, 0, 0, 0.36);
+  
+  /* 表单 */
+  --form-label-color: #e6e6e6; /* 表单标签颜色，调亮以提高暗色模式下的对比度 */
+}
+
+/* 应用主题变量 */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--text-color);
+  background-color: var(--body-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* 自定义选择文本样式 */
+::selection {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+/* 自定义链接样式 */
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: var(--link-hover-color);
+}
+
+a:active {
+  color: var(--link-active-color);
+}
+
+/* 自定义卡片样式 */
+.ant-card {
+  background-color: var(--component-background);
+  border-color: var(--border-color);
+  box-shadow: var(--box-shadow-card);
+  border-radius: var(--border-radius-base);
+  overflow: hidden;
+}
+
+/* 自定义表格样式 */
+.ant-table {
+  background-color: var(--component-background);
+  color: var(--text-color);
+}
+
+.ant-table-thead > tr > th {
+  background-color: var(--component-background);
+  color: var(--heading-color);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.ant-table-tbody > tr:hover > td {
+  background-color: var(--item-hover-bg);
+}
+
+/* 自定义表单样式 */
+.ant-form-item-label > label {
+  color: var(--form-label-color);
+}
+
+.ant-input, .ant-select-selector {
+  background-color: var(--component-background);
+  border-color: var(--border-color);
+  color: var(--text-color);
+  border-radius: var(--border-radius-base);
+}
+
+.ant-input:hover, .ant-select-selector:hover {
+  border-color: var(--primary-color-hover);
+}
+
+.ant-input:focus, .ant-select-selector:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px var(--primary-color-outline);
+}
+
+/* 自定义按钮样式 */
+.ant-btn {
+  border-color: var(--border-color);
+  color: var(--text-color);
+  border-radius: var(--border-radius-base);
+}
+
+.ant-btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: #fff;
+}
+
+.ant-btn-primary:hover {
+  background-color: var(--primary-color-hover);
+  border-color: var(--primary-color-hover);
+}
+
+.ant-btn-primary:active {
+  background-color: var(--primary-color-active);
+  border-color: var(--primary-color-active);
+}
+
+/* 自定义菜单样式 */
+.ant-menu {
+  background-color: var(--component-background);
+  color: var(--text-color);
+}
+
+.ant-menu-item:hover {
+  color: var(--primary-color);
+}
+
+.ant-menu-item-selected {
+  background-color: var(--primary-color-bg);
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+/* 自定义模态框样式 */
+.ant-modal-content {
+  background-color: var(--component-background);
+  border-radius: var(--border-radius-lg);
+}
+
+.ant-modal-header {
+  background-color: var(--component-background);
+  border-bottom: 1px solid var(--divider-color);
+}
+
+.ant-modal-title {
+  color: var(--heading-color);
+}
+
+.ant-modal-footer {
+  border-top: 1px solid var(--divider-color);
+}
+
+/* 自定义抽屉样式 */
+.ant-drawer-content {
+  background-color: var(--component-background);
+}
+
+.ant-drawer-header {
+  background-color: var(--component-background);
+  border-bottom: 1px solid var(--divider-color);
+}
+
+.ant-drawer-title {
+  color: var(--heading-color);
+  font-weight: 500;
+}
+
+/* 自定义标签页样式 */
+.ant-tabs-tab {
+  color: var(--text-color-secondary);
+}
+
+.ant-tabs-tab:hover {
+  color: var(--primary-color-hover);
+}
+
+.ant-tabs-tab-active {
+  color: var(--primary-color);
+}
+
+.ant-tabs-ink-bar {
+  background-color: var(--primary-color);
+}
+
+/* 卡片样式增强 */
+.ant-card {
+  background-color: var(--component-background);
+  color: var(--text-color);
+}
+
+.ant-card-head {
+  color: var(--heading-color);
+  border-bottom: 1px solid var(--divider-color);
+}
+
+/* 表格样式增强 */
+.ant-table {
+  color: var(--text-color);
+}
+
+.ant-table-thead > tr > th {
+  color: var(--heading-color);
+  background-color: var(--item-hover-bg);
+  font-weight: 600;
+}
+
+.ant-table-tbody > tr > td {
+  border-bottom: 1px solid var(--divider-color);
+}
+
+/* 表单样式增强 */
+.ant-form-item-label > label {
+  color: var(--form-label-color);
+  font-weight: 500;
+}
+
+.ant-input, 
+.ant-input-number, 
+.ant-select-selector, 
+.ant-picker, 
+.ant-input-affix-wrapper {
+  background-color: var(--component-background);
+  border-color: var(--border-color);
+  color: var(--text-color);
+}
+
+/* 按钮样式增强 */
+.ant-btn:not(.ant-btn-primary):not(.ant-btn-dangerous) {
+  background-color: var(--component-background);
+  border-color: var(--border-color);
+  color: var(--text-color);
+}
+
+/* 模态框样式增强 */
+.ant-modal-content,
+.ant-modal-header {
+  background-color: var(--component-background);
+  color: var(--text-color);
+}
+
+.ant-modal-title {
+  color: var(--heading-color);
+  font-weight: 600;
+}
+
+/* 菜单样式增强 */
+.ant-menu:not(.ant-menu-dark) {
+  background-color: var(--component-background);
+  color: var(--text-color);
+}
+
+/* 标签页样式增强 */
+.ant-tabs-tab {
+  color: var(--text-color-secondary);
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+/* 布局样式 */
+.ant-layout-header {
+  background-color: var(--component-background);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ant-layout-sider {
+  background-color: var(--component-background);
+  box-shadow: 1px 0 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 下拉菜单样式 */
+.ant-dropdown-menu {
+  background-color: var(--component-background);
+}
+
+.ant-dropdown-menu-item {
+  color: var(--text-color);
+}
+
+/* 分页样式 */
+.ant-pagination-item {
+  background-color: var(--component-background);
+  border-color: var(--border-color);
+}
+
+.ant-pagination-item a {
+  color: var(--text-color);
+}
+
+/* 列表样式 */
+.ant-list {
+  color: var(--text-color);
+}
+
+.ant-list-item {
+  border-bottom: 1px solid var(--divider-color);
+}
+
+/* 描述列表样式 */
+.ant-descriptions-bordered .ant-descriptions-item-label,
+.ant-descriptions-bordered .ant-descriptions-item-content {
+  background-color: var(--component-background);
+  border-color: var(--border-color);
+  color: var(--text-color);
+}
+
+/* 折叠面板样式 */
+.ant-collapse {
+  background-color: var(--component-background);
+  border-color: var(--border-color);
+}
+
+.ant-collapse-header {
+  color: var(--heading-color) !important;
+}
+
+.ant-collapse-content {
+  background-color: var(--component-background);
+  color: var(--text-color);
+}
+
+/* 统计数值样式 */
+.ant-statistic-title {
+  color: var(--text-color-secondary);
+}
+
+.ant-statistic-content {
+  color: var(--heading-color);
+}
+
+/* 提高文字可读性的额外样式 */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--heading-color);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+p, span, div {
+  color: var(--text-color);
+}
+
+.text-secondary {
+  color: var(--text-color-secondary);
+}
+
+.text-disabled {
+  color: var(--disabled-color);
+}
+
+/* 提高表单标签可读性 */
+label {
+  font-weight: 500;
+  color: var(--form-label-color);
+}
+
+/* 提高按钮文字可读性 */
+button, .ant-btn {
+  font-weight: 500;
+}
+
+/* 提高卡片标题可读性 */
+.ant-card-head-title {
+  font-weight: 600;
+  color: var(--heading-color);
+}
+
+/* 提高表格标题可读性 */
+.ant-table-thead > tr > th {
+  font-weight: 600;
+  color: var(--heading-color);
+}
+
+/* 提高导航菜单可读性 */
+.ant-menu-item, .ant-menu-submenu-title {
+  font-weight: 500;
+}
+
+/* 提高模态框标题可读性 */
+.ant-modal-title {
+  font-weight: 600;
+  color: var(--heading-color);
+}
+
+/* 提高抽屉标题可读性 */
+.ant-drawer-title {
+  font-weight: 600;
+  color: var(--heading-color);
+}
+
+/* 提高标签页标题可读性 */
+.ant-tabs-tab {
+  font-weight: 500;
+}
+
+/* 提高折叠面板标题可读性 */
+.ant-collapse-header {
+  font-weight: 500;
+}
+
+/* 提高统计数值可读性 */
+.ant-statistic-content-value {
+  font-weight: 600;
+  color: var(--heading-color);
+}
+
+/* 提高链接可读性 */
+a {
+  font-weight: 500;
+}
+
+/* 提高警告、错误、成功文本可读性 */
+.ant-typography-danger {
+  color: var(--error-color);
+  font-weight: 500;
+}
+
+.ant-typography-warning {
+  color: var(--warning-color);
+  font-weight: 500;
+}
+
+.ant-typography-success {
+  color: var(--success-color);
+  font-weight: 500;
+} 

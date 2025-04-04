@@ -1,0 +1,12 @@
+{
+  "name": "online-learning-system-test",
+  "version": "1.0.0",
+  "description": "在线学习系统API测试页面",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {},
+  "author": "",
+  "license": "ISC"
+} 

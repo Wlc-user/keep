@@ -1,0 +1,140 @@
+[
+  {
+    "id": 1,
+    "title": "数据结构知识图谱",
+    "description": "数据结构课程知识点与关联关系",
+    "courseId": 1,
+    "createdBy": "张教授",
+    "createdAt": "2023-02-20T10:00:00Z",
+    "updatedAt": "2023-03-15T14:30:00Z",
+    "nodesCount": 45,
+    "edgesCount": 68,
+    "isPublic": true,
+    "nodes": [
+      {
+        "id": "n1",
+        "label": "数组",
+        "category": "数据结构",
+        "weight": 1.0
+      },
+      {
+        "id": "n2",
+        "label": "链表",
+        "category": "数据结构",
+        "weight": 1.0
+      },
+      {
+        "id": "n3",
+        "label": "栈",
+        "category": "数据结构",
+        "weight": 0.8
+      }
+    ],
+    "edges": [
+      {
+        "source": "n1",
+        "target": "n3",
+        "label": "实现",
+        "weight": 0.7
+      },
+      {
+        "source": "n2",
+        "target": "n3",
+        "label": "实现",
+        "weight": 0.6
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "机器学习知识图谱",
+    "description": "机器学习核心概念和算法关系",
+    "courseId": 2,
+    "createdBy": "李教授",
+    "createdAt": "2023-02-25T09:15:00Z",
+    "updatedAt": "2023-03-20T11:40:00Z",
+    "nodesCount": 38,
+    "edgesCount": 52,
+    "isPublic": true,
+    "nodes": [
+      {
+        "id": "n1",
+        "label": "监督学习",
+        "category": "学习类型",
+        "weight": 1.0
+      },
+      {
+        "id": "n2",
+        "label": "无监督学习",
+        "category": "学习类型",
+        "weight": 0.9
+      },
+      {
+        "id": "n3",
+        "label": "分类",
+        "category": "任务类型",
+        "weight": 0.8
+      }
+    ],
+    "edges": [
+      {
+        "source": "n1",
+        "target": "n3",
+        "label": "包含",
+        "weight": 0.9
+      },
+      {
+        "source": "n2",
+        "target": "n3",
+        "label": "部分包含",
+        "weight": 0.3
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "网络安全知识图谱",
+    "description": "网络安全攻防技术知识体系",
+    "courseId": 3,
+    "createdBy": "王教授",
+    "createdAt": "2023-03-10T13:20:00Z",
+    "updatedAt": "2023-03-25T15:50:00Z",
+    "nodesCount": 42,
+    "edgesCount": 65,
+    "isPublic": false,
+    "nodes": [
+      {
+        "id": "n1",
+        "label": "网络攻击",
+        "category": "安全威胁",
+        "weight": 1.0
+      },
+      {
+        "id": "n2",
+        "label": "防火墙",
+        "category": "防御机制",
+        "weight": 0.9
+      },
+      {
+        "id": "n3",
+        "label": "入侵检测",
+        "category": "防御机制",
+        "weight": 0.8
+      }
+    ],
+    "edges": [
+      {
+        "source": "n1",
+        "target": "n2",
+        "label": "防御",
+        "weight": 0.8
+      },
+      {
+        "source": "n1",
+        "target": "n3",
+        "label": "检测",
+        "weight": 0.7
+      }
+    ]
+  }
+] 

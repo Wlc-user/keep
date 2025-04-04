@@ -1,0 +1,52 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "items": [
+      {
+        "id": "1",
+        "title": "系统通知",
+        "content": "欢迎使用在线学习系统！",
+        "type": "info",
+        "read": false,
+        "createdAt": "2025-03-30T10:00:00",
+        "link": "/dashboard",
+        "category": "system",
+        "sender": {
+          "name": "系统管理员",
+          "avatar": "/assets/avatar/admin.png"
+        }
+      },
+      {
+        "id": "2",
+        "title": "课程更新",
+        "content": "您关注的《Web开发入门》课程已更新最新内容",
+        "type": "success",
+        "read": false,
+        "createdAt": "2025-03-29T15:30:00",
+        "link": "/courses/1",
+        "category": "course",
+        "sender": {
+          "name": "教务管理员",
+          "avatar": "/assets/avatar/teacher.png"
+        }
+      },
+      {
+        "id": "3",
+        "title": "作业提醒",
+        "content": "您有一个作业即将到期，请及时提交",
+        "type": "warning",
+        "read": false,
+        "createdAt": "2025-03-28T09:15:00",
+        "link": "/assignments/5",
+        "category": "assignment",
+        "sender": {
+          "name": "张老师",
+          "avatar": "/assets/avatar/teacher2.png"
+        }
+      }
+    ],
+    "totalCount": 3,
+    "unreadCount": 3
+  }
+} 

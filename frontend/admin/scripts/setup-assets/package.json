@@ -1,0 +1,11 @@
+{
+  "name": "setup-assets",
+  "version": "1.0.0",
+  "description": "设置资产目录的脚本",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "private": true
+} 

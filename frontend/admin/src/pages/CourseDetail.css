@@ -1,0 +1,99 @@
+.course-detail-container {
+  padding: 20px;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  width: 100%;
+}
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  width: 100%;
+  gap: 20px;
+}
+
+.course-info-card {
+  margin-bottom: 20px;
+}
+
+.course-header {
+  margin-bottom: 24px;
+}
+
+.course-image {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.course-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.course-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.course-short-description {
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 16px;
+  margin-bottom: 24px;
+}
+
+.course-description {
+  margin-top: 16px;
+}
+
+.learning-objectives {
+  margin-top: 12px;
+  padding-left: 20px;
+}
+
+.learning-objectives li {
+  margin-bottom: 8px;
+}
+
+.chapter-item {
+  width: 100%;
+}
+
+.chapter-meta {
+  margin-top: 8px;
+}
+
+.course-sidebar {
+  height: 100%;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 10px;
+}
+
+.course-enrollments {
+  margin-top: 16px;
+}
+
+@media screen and (max-width: 768px) {
+  .course-image {
+    height: 160px;
+  }
+} 

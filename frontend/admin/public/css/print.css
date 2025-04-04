@@ -1,0 +1,15 @@
+/* 打印样式 */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background-color: white;
+    font-size: 12pt;
+  }
+  
+  .page-break {
+    page-break-before: always;
+  }
+} 

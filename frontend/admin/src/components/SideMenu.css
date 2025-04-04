@@ -1,0 +1,70 @@
+.side-menu {
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  overflow: auto;
+}
+
+.side-menu .logo {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 16px;
+  border-radius: 4px;
+}
+
+.side-menu .logo a {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.side-menu .ant-menu-item {
+  margin: 8px 0;
+}
+
+.side-menu .ant-menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.side-menu .ant-menu-item-selected {
+  background-color: #1890ff !important;
+}
+
+@media (max-width: 768px) {
+  .side-menu {
+    position: absolute;
+    z-index: 1000;
+  }
+}
+
+.side-menu-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.side-menu-container .logo {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #001529;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.side-menu-container .logo a {
+  color: white;
+  text-decoration: none;
+}
+
+/* 确保菜单占满剩余空间 */
+.side-menu-container .ant-menu {
+  flex: 1;
+} 

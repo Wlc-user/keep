@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="description" content="在线学习系统管理端 - 提供高效的教学管理功能" />
+  <meta name="theme-color" content="#1890ff" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="format-detection" content="telephone=no" />
+  
+  <!-- 加载防重复脚本，在所有资源加载前执行 -->
+  <script>
+    // 标记页面开始加载时间
+    window.__PAGE_LOAD_START = Date.now();
+    // 记录已加载资源
+    window.__LOADED_RESOURCES = new Set();
+    // 初始化状态
+    window.__INITIALIZED = {};
+    
+    // 防止DOM操作中的重复资源加载
+    (function() {
+      // 定义要监视的元素类型和属性
+      const monitored = {
+        'LINK': ['href'],
+        'SCRIPT': ['src']
+      };
+      
+      // 跟踪已创建的元素
+      const createElement = document.createElement;
+      document.createElement = function(tagName) {
+        const element = createElement.call(document, tagName);
+        const tag = tagName.toUpperCase();
+        
+        // 拦截支持的元素类型
+        if (monitored[tag]) {
+          const attrs = monitored[tag];
+          const originalSetAttribute = element.setAttribute;
+          
+          // 拦截setAttribute方法
+          element.setAttribute = function(name, value) {
+            if (attrs.includes(name) && window.__LOADED_RESOURCES.has(value)) {
+              console.log(`[防重复] 阻止加载: ${value}`);
+              return;
+            }
+            return originalSetAttribute.call(this, name, value);
+          };
+        }
+        
+        return element;
+      };
+      
+      console.log('[初始化] 加载防重复保护已启用');
+    })();
+  </script>
+  
+  <!-- 预加载字体 -->
+  <link rel="preload" href="/assets/fonts/roboto-regular.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/roboto-medium.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/roboto-bold.woff2" as="font" type="font/woff2" crossorigin />
+  
+  <!-- 内联关键CSS -->
+  <style>
+    /* 初始加载样式 */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f0f2f5;
+    }
+    #app-loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #f0f2f5;
+      z-index: 9999;
+    }
+    #app-loading .logo {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 24px;
+    }
+    #app-loading .loading-text {
+      font-size: 16px;
+      color: #1890ff;
+    }
+    #app-loading .spinner {
+      width: 40px;
+      height: 40px;
+      margin: 16px auto;
+      border: 4px solid rgba(24, 144, 255, 0.1);
+      border-left-color: #1890ff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+  
+  <title>在线学习系统管理端</title>
+</head>
+<body>
+  <!-- 应用加载指示器 -->
+  <div id="app-loading">
+    <img class="logo" src="/logo.svg" alt="应用图标" />
+    <div class="spinner"></div>
+    <div class="loading-text">正在加载应用...</div>
+  </div>
+  
+  <div id="root"></div>
+  
+  <!-- 应用初始化脚本 -->
+  <script>
+    // 初始化加载状态记录
+    window.addEventListener('load', function() {
+      const loadTime = Date.now() - window.__PAGE_LOAD_START;
+      console.log(`[性能] 页面加载完成，用时: ${loadTime}ms`);
+      
+      // 隐藏加载指示器
+      setTimeout(function() {
+        const loader = document.getElementById('app-loading');
+        if (loader) {
+          loader.style.opacity = '0';
+          loader.style.transition = 'opacity 0.5s';
+          setTimeout(function() {
+            if (loader.parentNode) {
+              loader.parentNode.removeChild(loader);
+            }
+          }, 500);
+        }
+      }, 500);
+    });
+  </script>
+  
+  <!-- 加载主应用脚本 -->
+  <script type="module" src="/src/main.tsx"></script>
+  
+  <!-- 加载错误恢复脚本 -->
+  <script>
+    // 监听未捕获的错误
+    window.addEventListener('error', function(event) {
+      console.error('[全局错误]', event.message);
+    });
+    
+    // 监听Promise拒绝
+    window.addEventListener('unhandledrejection', function(event) {
+      console.error('[未处理的Promise拒绝]', event.reason);
+    });
+  </script>
+</body>
+</html> 

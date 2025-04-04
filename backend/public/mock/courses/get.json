@@ -1,0 +1,51 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": [
+    {
+      "id": 1,
+      "title": "Web开发入门",
+      "description": "学习HTML、CSS和JavaScript的基础知识，了解现代Web开发的基本概念",
+      "coverImage": "/assets/images/courses/web-dev.jpg",
+      "startDate": "2025-04-01",
+      "endDate": "2025-06-30",
+      "credits": 3,
+      "capacity": 30,
+      "isActive": true,
+      "createdAt": "2025-03-15",
+      "updatedAt": null,
+      "teacherCount": 1,
+      "studentCount": 15
+    },
+    {
+      "id": 2,
+      "title": "数据结构与算法",
+      "description": "学习常见的数据结构和算法，以及它们在实际编程中的应用",
+      "coverImage": "/assets/images/courses/algorithms.jpg",
+      "startDate": "2025-04-05",
+      "endDate": "2025-07-05",
+      "credits": 4,
+      "capacity": 25,
+      "isActive": true,
+      "createdAt": "2025-03-20",
+      "updatedAt": null,
+      "teacherCount": 1,
+      "studentCount": 20
+    },
+    {
+      "id": 3,
+      "title": "数据库系统",
+      "description": "数据库设计、SQL语言、数据库优化与维护的全面介绍",
+      "coverImage": "/assets/images/courses/database.jpg",
+      "startDate": "2025-04-10",
+      "endDate": "2025-07-10",
+      "credits": 3,
+      "capacity": 35,
+      "isActive": true,
+      "createdAt": "2025-03-22",
+      "updatedAt": null,
+      "teacherCount": 2,
+      "studentCount": 25
+    }
+  ]
+} 
